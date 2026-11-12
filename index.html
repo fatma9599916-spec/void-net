@@ -1,0 +1,552 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOID NET | Beyond The Digital World</title>
+
+    <style>
+        /* BASIC SETTINGS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #050509;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --purple: #a855f7;
+            --blue: #00d9ff;
+            --dark: #080812;
+        }
+
+        /* NAVIGATION */
+        header {
+            width: 100%;
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5,5,9,0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #222233;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: var(--blue);
+            text-shadow: 0 0 15px var(--blue);
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: var(--blue);
+            text-shadow: 0 0 10px var(--blue);
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 27px;
+            color: var(--blue);
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+            background:
+                radial-gradient(ellipse at center,
+                #25103e 0%, #0b0b19 45%, #050509 80%);
+        }
+
+        .tag {
+            color: var(--blue);
+            border: 1px solid var(--blue);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px #00d9ff33;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 10vw, 110px);
+            letter-spacing: 10px;
+            font-weight: 900;
+            background: linear-gradient(90deg, #fff, #a855f7, #00d9ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 20px #a855f755);
+        }
+
+        .hero h2 {
+            color: #ddd;
+            font-size: clamp(17px, 3vw, 25px);
+            font-weight: 400;
+            margin: 15px 0;
+            letter-spacing: 4px;
+        }
+
+        .hero p {
+            color: #999;
+            max-width: 600px;
+            line-height: 1.8;
+            margin: 15px auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: transparent;
+            border: 1px solid var(--blue);
+            color: var(--blue);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--blue);
+            color: #050509;
+            box-shadow: 0 0 25px var(--blue);
+        }
+
+        /* GENERAL SECTIONS */
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .section-title span {
+            color: var(--blue);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 50px;
+        }
+
+        /* ABOUT */
+        .about {
+            background: #090912;
+            text-align: center;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: auto;
+            color: #aaa;
+            line-height: 2;
+            font-size: 17px;
+        }
+
+        /* SERVICES */
+        .services {
+            background: #050509;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #111121, #090910);
+            padding: 35px 25px;
+            border: 1px solid #292943;
+            border-radius: 12px;
+            transition: .4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--purple);
+            box-shadow: 0 0 25px #a855f733;
+        }
+
+        .card .symbol {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: var(--blue);
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #999;
+            line-height: 1.7;
+        }
+
+        /* CONTACT */
+        .contact {
+            background: #090912;
+            text-align: center;
+        }
+
+        .contact form {
+            max-width: 550px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact input,
+        .contact textarea {
+            background: #11111e;
+            border: 1px solid #33334b;
+            padding: 16px;
+            color: white;
+            border-radius: 6px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .contact input:focus,
+        .contact textarea:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 10px #00d9ff33;
+        }
+
+        .contact textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 30px;
+            text-align: center;
+            background: #040407;
+            color: #666;
+            border-top: 1px solid #222;
+        }
+
+        footer span {
+            color: var(--blue);
+        }
+
+        /* ANIMATION */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: all .8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media(max-width: 768px) {
+            nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: #090912;
+                flex-direction: column;
+                padding: 25px;
+                text-align: center;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                letter-spacing: 4px;
+            }
+
+            section {
+                padding: 80px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <div class="logo">VOID<span style="color:#a855f7">NET</span></div>
+
+        <nav id="navbar">
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#services">SERVICES</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    </header>
+
+    <!-- HOME -->
+    <section class="hero" id="home">
+
+        <div class="tag">WELCOME TO THE UNKNOWN</div>
+
+        <h1>VOID NET</h1>
+
+        <h2 id="typing">BEYOND THE DIGITAL WORLD</h2>
+
+        <p>
+            Enter a world where technology meets imagination.
+            Explore the future of digital innovation, cybersecurity
+            and the endless possibilities of the internet.
+        </p>
+
+        <a href="#about" class="btn">EXPLORE MORE ↗</a>
+
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about reveal" id="about">
+
+        <h2 class="section-title">ABOUT <span>VOID NET</span></h2>
+
+        <p class="subtitle">A new perspective on the digital universe.</p>
+
+        <p class="about-text">
+            VOID NET is a futuristic digital platform built around
+            technology, creativity and innovation. Our vision is to
+            explore the digital universe, understand modern technology
+            and create a smarter digital future.
+            <br><br>
+            We believe that knowledge is power and the future belongs
+            to those who dare to explore it.
+        </p>
+
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services reveal" id="services">
+
+        <h2 class="section-title">OUR <span>UNIVERSE</span></h2>
+
+        <p class="subtitle">Discover what's inside VOID NET.</p>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="symbol">⌘</div>
+                <h3>Technology</h3>
+                <p>
+                    Discover modern technology, digital tools
+                    and innovative ideas shaping our future.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="symbol">◈</div>
+                <h3>Cyber Security</h3>
+                <p>
+                    Learn about online safety, privacy,
+                    digital protection and security awareness.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="symbol">⌨</div>
+                <h3>Programming</h3>
+                <p>
+                    Explore coding, web development and
+                    the art of creating digital experiences.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="symbol">✧</div>
+                <h3>Innovation</h3>
+                <p>
+                    Explore creative concepts and new
+                    possibilities in the digital world.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact reveal" id="contact">
+
+        <h2 class="section-title">CONTACT <span>US</span></h2>
+
+        <p class="subtitle">Have something to share? Get in touch.</p>
+
+        <form id="contactForm">
+
+            <input type="text" id="name"
+                   placeholder="Your Name" required>
+
+            <input type="email" id="email"
+                   placeholder="Your Email" required>
+
+            <textarea id="message"
+                      placeholder="Your Message" required></textarea>
+
+            <button type="submit" class="btn">
+                SEND MESSAGE ↗
+            </button>
+
+        </form>
+
+        <p id="response" style="margin-top:20px;color:#00d9ff;"></p>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 <span>VOID NET</span> | ALL RIGHTS RESERVED</p>
+        <p style="margin-top:10px;">BEYOND THE DIGITAL WORLD.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        // MOBILE MENU
+        function toggleMenu() {
+            document.getElementById("navbar").classList.toggle("active");
+        }
+
+        // CLOSE MENU AFTER CLICK
+        document.querySelectorAll("#navbar a").forEach(link => {
+            link.addEventListener("click", () => {
+                document.getElementById("navbar").classList.remove("active");
+            });
+        });
+
+        // SCROLL ANIMATION
+        const observer = new IntersectionObserver(entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+
+            });
+
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll(".reveal").forEach(element => {
+            observer.observe(element);
+        });
+
+        // TYPING EFFECT
+        const words = [
+            "BEYOND THE DIGITAL WORLD",
+            "EXPLORE THE UNKNOWN",
+            "ENTER THE FUTURE"
+        ];
+
+        let wordIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+        const typing = document.getElementById("typing");
+
+        function typeEffect() {
+
+            const currentWord = words[wordIndex];
+
+            if (!deleting) {
+                typing.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+
+                if (charIndex === currentWord.length) {
+                    deleting = true;
+                    setTimeout(typeEffect, 1500);
+                    return;
+                }
+
+            } else {
+                typing.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+
+                if (charIndex === 0) {
+                    deleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+            }
+
+            setTimeout(typeEffect, deleting ? 40 : 85);
+        }
+
+        typeEffect();
+
+        // CONTACT FORM VALIDATION
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            if (!name || !email || !message) {
+                document.getElementById("response").textContent =
+                    "Please fill all fields.";
+                return;
+            }
+
+            document.getElementById("response").textContent =
+                "Thank you, " + name + "! Your form is ready.";
+
+            this.reset();
+
+        });
+
+    </script>
+
+</body>
+</html>
